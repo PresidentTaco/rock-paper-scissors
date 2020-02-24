@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<html>
+    <title>Rock Paper Scissors</title>
+
+    <script>
+        function computerPlay() {
+            computerSelection = Math.floor(Math.random() * 3) + 1;
+            switch(computerSelection){
+                case 1:
+                    computerSelection = "rock"
+                    break;
+                case 2:
+                    computerSelection = "paper"
+                    break;
+                case 3: 
+                    computerSelection = "scissors"
+                    break;
+            }
+            return computerSelection;
+        }
+
+        function playerChoice() {
+            playerSelection = window.prompt("Rock, Paper or Scissors");
+            playerSelection = playerSelection.toLowerCase();
+            return playerSelection;
+        }
+
+        function playRound() {
+                    computerPlay()
+                    playerChoice()
+                    if (playerSelection === computerSelection) {
+                        console.log(`It's a draw! ${playerSelection} ${computerSelection}`)
+                    } else if (playerSelection === "rock") {
+                        if (computerSelection === "paper") {
+                            computerScore += 1;
+                            console.log(`Player loses! ${playerSelection} ${computerSelection}`)
+                        } else {
+                            playerScore += 1;
+                            console.log(`Player wins! ${playerSelection} ${computerSelection}`)
+                        }
+                    } else if (playerSelection === "paper") {
+                        if (computerSelection === "rock") {
+                            playerScore += 1;
+                            console.log(`Player wins! ${playerSelection} ${computerSelection}`)
+                        } else {
+                            computerScore += 1;
+                            console.log(`Player loses! ${playerSelection} ${computerSelection}`)
+                        }
+                    } else if (playerSelection === "scissors") {
+                        if (computerSelection === "rock") {
+                            computerScore += 1;
+                            console.log(`Player loses! ${playerSelection} ${computerSelection}`)
+                        } else {
+                            playerScore += 1;
+                            console.log(`Player wins! ${playerSelection} ${computerSelection}`)
+                        }
+                    } else {
+                        console.log(`${playerSelection} is not a valid choice!`)
+                    }
+
+                }   
+
+        function game() {
+            let i = 0 
+            while (i < 5) {
+                
+                playRound()
+                i++ 
+                console.log(`Round: ${i}, Current PlayerScore: ${playerScore}, Current CPU Score: ${computerScore}`)
+            }  
+            if (playerScore > computerScore) {
+                console.log(`Player wins! ${playerScore} to ${computerScore}`)
+            } else if (computerScore > playerScore) {
+                console.log(`Computer wins! ${computerScore} to ${playerScore}`)
+            } else {
+                console.log(`Draw! ${playerScore} to ${computerScore}`)
+            }
+        }  
+        
+        let playerScore = 0;
+        let computerScore = 0;
+        game()
+    </script>
+</html>
